@@ -29,25 +29,25 @@ const BentoCard = ({
         visible: { opacity: 1, y: 0 },
       }}
       className={cn(
-        "group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-zinc-200 bg-white p-6 shadow-lg shadow-zinc-200/40 backdrop-blur-sm transition-all duration-300 hover:border-zinc-300 hover:shadow-zinc-200/70 dark:border-zinc-800 dark:bg-zinc-900/40 dark:shadow-none dark:hover:border-zinc-700 dark:hover:bg-zinc-900/60",
+        "group relative flex flex-col justify-between overflow-hidden rounded-2xl sm:rounded-3xl border border-zinc-200 bg-white p-5 sm:p-6 shadow-lg shadow-zinc-200/40 backdrop-blur-sm transition-all duration-300 hover:border-zinc-300 hover:shadow-zinc-200/70 dark:border-zinc-800 dark:bg-zinc-900/40 dark:shadow-none dark:hover:border-zinc-700 dark:hover:bg-zinc-900/60 min-h-[200px] sm:min-h-[220px]",
         className
       )}
     >
       {/* Glow Effect on Hover */}
-      <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-indigo-500/10 blur-[50px] transition-all duration-500 group-hover:bg-indigo-500/20" />
+      <div className="absolute -right-10 -top-10 h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-indigo-500/10 blur-[50px] transition-all duration-500 group-hover:bg-indigo-500/20" />
 
       {/* Content Top (Visuals) */}
-      <div className="mb-4 flex-1 relative z-10">{children}</div>
+      <div className="mb-3 sm:mb-4 flex-1 relative z-10">{children}</div>
 
       {/* Content Bottom (Text) */}
       <div className="relative z-10">
-        <div className="mb-3 inline-flex items-center justify-center rounded-lg bg-zinc-100 p-2 text-zinc-500 group-hover:text-indigo-600 group-hover:bg-indigo-500/10 transition-colors dark:bg-zinc-800/50 dark:text-zinc-400 dark:group-hover:text-indigo-400">
-          <Icon size={20} />
+        <div className="mb-2 sm:mb-3 inline-flex items-center justify-center rounded-lg bg-zinc-100 p-1.5 sm:p-2 text-zinc-500 group-hover:text-indigo-600 group-hover:bg-indigo-500/10 transition-colors dark:bg-zinc-800/50 dark:text-zinc-400 dark:group-hover:text-indigo-400">
+          <Icon size={18} className="sm:w-5 sm:h-5" />
         </div>
-        <h3 className="mb-1 text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+        <h3 className="mb-1 text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-100">
           {title}
         </h3>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
+        <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
           {description}
         </p>
       </div>
@@ -60,26 +60,26 @@ export default function FeaturesBento() {
   return (
     <section
       id="features"
-      className="relative w-full bg-zinc-50 py-24 px-4 md:px-6 overflow-hidden dark:bg-zinc-950 transition-colors duration-300"
+      className="relative w-full bg-zinc-50 py-16 sm:py-20 md:py-24 px-4 md:px-6 overflow-hidden dark:bg-zinc-950 transition-colors duration-300"
     >
       {/* Background Decoration */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl opacity-20 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[128px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-[128px]" />
+        <div className="absolute top-1/4 left-1/4 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-purple-500/20 rounded-full blur-[128px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 sm:w-80 md:w-96 h-64 sm:h-80 md:h-96 bg-indigo-500/20 rounded-full blur-[128px]" />
       </div>
 
       <div className="relative mx-auto max-w-6xl z-10">
         {/* Section Header */}
-        <div className="mb-16 text-center">
+        <div className="mb-12 sm:mb-14 md:mb-16 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl md:text-5xl"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white"
           >
             Todo lo que necesitas para escalar.
           </motion.h2>
-          <p className="mt-4 text-zinc-600 max-w-2xl mx-auto dark:text-zinc-400">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-zinc-600 max-w-2xl mx-auto dark:text-zinc-400 px-4">
             Una suite completa de herramientas integradas para llevar tu
             desarrollo al siguiente nivel.
           </p>
@@ -91,14 +91,14 @@ export default function FeaturesBento() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           transition={{ staggerChildren: 0.1 }}
-          className="grid grid-cols-1 gap-4 md:grid-cols-3 md:auto-rows-[minmax(250px,auto)]"
+          className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:auto-rows-[minmax(250px,auto)]"
         >
           {/* Card 1: Large (Span 2 cols) - Edge Network */}
           <BentoCard
             title="Red Edge global"
             description="Despliega tu código en más de 35 regiones automáticamente. Latencia < 50ms garantizada."
             icon={Globe}
-            className="md:col-span-2"
+            className="sm:col-span-2 lg:col-span-2"
           >
             {/* Visual: Abstract Map Dots */}
             <div className="absolute inset-0 flex items-center justify-center opacity-30 group-hover:opacity-50 transition-opacity">
@@ -111,7 +111,7 @@ export default function FeaturesBento() {
             title="Seguridad empresarial"
             description="Cumplimiento SOC2 Type II, encriptación AES-256 en reposo y tránsito. Tu data, segura."
             icon={Shield}
-            className="md:row-span-2 bg-gradient-to-b from-white to-zinc-100 dark:from-zinc-900/40 dark:to-zinc-900/80"
+            className="lg:row-span-2 bg-gradient-to-b from-white to-zinc-100 dark:from-zinc-900/40 dark:to-zinc-900/80"
           >
             <div className="flex items-center justify-center h-full">
               <div className="relative">
@@ -166,22 +166,26 @@ export default function FeaturesBento() {
             title="Experiencia para desarrolladores"
             description="CLI potente, integración con VS Code y Previews automáticas en cada PR."
             icon={Terminal}
-            className="md:col-span-2"
+            className="sm:col-span-2 lg:col-span-2"
           >
             {/* Visual: Fake Terminal */}
-            <div className="absolute bottom-4 right-4 left-4 top-4 bg-zinc-900 rounded-lg border border-zinc-200 p-3 font-mono text-xs text-zinc-600 opacity-80 group-hover:opacity-100 transition-opacity shadow-2xl dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400">
-              <div className="flex gap-1.5 mb-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500/20" />
-                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20" />
-                <div className="w-2.5 h-2.5 rounded-full bg-green-500/20" />
+            <div className="absolute bottom-3 right-3 left-3 top-3 sm:bottom-4 sm:right-4 sm:left-4 sm:top-4 bg-zinc-900 rounded-lg border border-zinc-200 p-2 sm:p-3 font-mono text-[10px] sm:text-xs text-zinc-600 opacity-80 group-hover:opacity-100 transition-opacity shadow-2xl dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400">
+              <div className="flex gap-1 sm:gap-1.5 mb-1.5 sm:mb-2">
+                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-500/20" />
+                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-yellow-500/20" />
+                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-500/20" />
               </div>
-              <div className="space-y-1">
+              <div className="space-y-0.5 sm:space-y-1">
                 <p>
                   <span className="text-indigo-400">➜</span>{" "}
                   <span className="text-zinc-300">~</span> npx devscale deploy
                 </p>
-                <p className="text-zinc-500">Compilando el proyecto...</p>
-                <p className="text-zinc-500">Optimizando recursos...</p>
+                <p className="text-zinc-500 hidden sm:block">
+                  Compilando el proyecto...
+                </p>
+                <p className="text-zinc-500 hidden sm:block">
+                  Optimizando recursos...
+                </p>
                 <p className="text-green-400">✔ Desplegado en 1.2s</p>
               </div>
             </div>

@@ -50,7 +50,7 @@ export default function Navbar() {
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 group-hover:bg-indigo-500 group-hover:text-white transition-colors">
               <Terminal size={18} />
             </div>
-            <span className="font-semibold text-zinc-100 tracking-tight">
+            <span className="font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight">
               DevScale
             </span>
           </Link>
