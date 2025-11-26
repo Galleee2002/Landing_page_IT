@@ -1,26 +1,101 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-sans: "Geist", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
+
+  --background: 240 6% 6%; /* zinc-950 */
+  --foreground: 0 0% 96%; /* zinc-100 */
+
+  --card: 240 5% 13%; /* zinc-900 */
+  --card-foreground: 0 0% 96%;
+
+  --popover: 240 5% 13%;
+  --popover-foreground: 0 0% 96%;
+
+  --primary: 244 75% 65%; /* indigo base for gradients */
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 240 4% 46%; /* zinc-400 */
+  --secondary-foreground: 0 0% 96%;
+
+  --muted: 240 4% 46%;
+  --muted-foreground: 0 0% 82%;
+
+  --accent: 244 75% 65%;
+  --accent-foreground: 0 0% 96%;
+
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 240 4% 26%;
+  --input: 240 4% 26%;
+  --ring: 245 85% 65%;
+
+  --gradient-accent: linear-gradient(
+    135deg,
+    hsl(244 85% 65%),
+    hsl(275 88% 72%)
+  );
+  --radius: 0.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root[data-theme="dark"],
+.dark {
+  --background: 240 6% 6%;
+  --foreground: 0 0% 96%;
+
+  --card: 240 5% 13%;
+  --card-foreground: 0 0% 96%;
+
+  --popover: 240 5% 13%;
+  --popover-foreground: 0 0% 96%;
+
+  --primary: 244 75% 65%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 240 4% 46%;
+  --secondary-foreground: 0 0% 96%;
+
+  --muted: 240 4% 46%;
+  --muted-foreground: 0 0% 82%;
+
+  --accent: 244 75% 65%;
+  --accent-foreground: 0 0% 96%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 85.7% 97.3%;
+
+  --border: 240 4% 26%;
+  --input: 240 4% 26%;
+  --ring: 245 85% 65%;
+
+  --gradient-accent: linear-gradient(
+    135deg,
+    hsl(244 85% 65%),
+    hsl(275 88% 72%)
+  );
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
+
+  code,
+  pre {
+    font-family: var(--font-mono);
+  }
 }

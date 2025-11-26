@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Stack listo para trabajar
 
-## Getting Started
+- Next.js 16 (App Router, TypeScript y fuente Geist configurada).
+- Tailwind CSS 3.4 con tokens para shadcnUI (`tailwind.config.ts`, `src/app/globals.css`).
+- shadcnUI inicializado (`components.json`, util `cn`, botón base en `src/components/ui/button.tsx`).
+- Framer Motion para animaciones (`src/app/page.tsx` incluye ejemplos).
+- Lenis como proveedor global para scroll suave (`LenisProvider` en `src/components/providers/lenis-provider.tsx`).
 
-First, run the development server:
+## Comandos
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install      # instala dependencias
+npm run dev      # modo desarrollo en http://localhost:3000
+npm run build    # build de producción
+npm start        # sirve la build
+npm run lint     # ejecuta ESLint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Añadir componentes shadcnUI
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Revisa/ajusta las opciones en `components.json` si lo necesitas.
+2. Ejecuta `npx shadcn@latest add <componente>` (por ejemplo `button`, `card`, `accordion`).
+3. Los componentes se guardarán en `src/components/ui` y utilizan el helper `cn`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Animaciones y scroll
 
-## Learn More
+- Framer Motion ya está disponible; puedes importar `motion` donde lo necesites.
+- Lenis se instancia una sola vez en el layout. Si quieres afinarlo, edita `LenisProvider`.
 
-To learn more about Next.js, take a look at the following resources:
+## Estructura base
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/app/page.tsx`: hero y secciones de ejemplo usando Button + Framer Motion.
+- `src/lib/utils.ts`: helper `cn` para combinar clases.
+- `tailwind.config.ts`: presets de colores, radios y animaciones (accordion) alineados con shadcnUI.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Con esto el proyecto queda listo para que sustituyas el contenido de la landing, agregues componentes de shadcnUI y empieces a iterar tu diseño.
