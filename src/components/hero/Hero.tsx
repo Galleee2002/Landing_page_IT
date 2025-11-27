@@ -100,7 +100,7 @@ export default function Hero() {
 
           {/* Secondary Button (Ghost/Outline) */}
           <Link
-            href="https://github.com"
+            href="https://github.com/Galleee2002/Landing_page_IT.git"
             target="_blank"
             className="inline-flex h-11 sm:h-12 w-full sm:w-auto items-center justify-center rounded-lg border border-zinc-200 bg-white px-6 sm:px-8 text-sm sm:text-base text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-900 hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-900 dark:hover:text-white"
           >

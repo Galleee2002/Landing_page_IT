@@ -37,10 +37,10 @@ const BentoCard = ({
       <div className="absolute -right-10 -top-10 h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-indigo-500/10 blur-[50px] transition-all duration-500 group-hover:bg-indigo-500/20" />
 
       {/* Content Top (Visuals) */}
-      <div className="mb-3 sm:mb-4 flex-1 relative z-10">{children}</div>
+      <div className="mb-3 sm:mb-4 flex-1 relative z-10 overflow-hidden">{children}</div>
 
       {/* Content Bottom (Text) */}
-      <div className="relative z-10">
+      <div className="relative z-20">
         <div className="mb-2 sm:mb-3 inline-flex items-center justify-center rounded-lg bg-zinc-100 p-1.5 sm:p-2 text-zinc-500 group-hover:text-indigo-600 group-hover:bg-indigo-500/10 transition-colors dark:bg-zinc-800/50 dark:text-zinc-400 dark:group-hover:text-indigo-400">
           <Icon size={18} className="sm:w-5 sm:h-5" />
         </div>
@@ -169,7 +169,7 @@ export default function FeaturesBento() {
             className="sm:col-span-2 lg:col-span-2"
           >
             {/* Visual: Fake Terminal */}
-            <div className="absolute bottom-3 right-3 left-3 top-3 sm:bottom-4 sm:right-4 sm:left-4 sm:top-4 bg-zinc-900 rounded-lg border border-zinc-200 p-2 sm:p-3 font-mono text-[10px] sm:text-xs text-zinc-600 opacity-80 group-hover:opacity-100 transition-opacity shadow-2xl dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400">
+            <div className="absolute bottom-3 right-3 left-3 top-3 sm:bottom-4 sm:right-4 sm:left-4 sm:top-4 bg-zinc-50 rounded-lg border border-zinc-200 p-2 sm:p-3 font-mono text-[10px] sm:text-xs text-zinc-600 opacity-80 group-hover:opacity-100 transition-opacity shadow-2xl dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400">
               <div className="flex gap-1 sm:gap-1.5 mb-1.5 sm:mb-2">
                 <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-500/20" />
                 <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-yellow-500/20" />
@@ -177,8 +177,8 @@ export default function FeaturesBento() {
               </div>
               <div className="space-y-0.5 sm:space-y-1">
                 <p>
-                  <span className="text-indigo-400">➜</span>{" "}
-                  <span className="text-zinc-300">~</span> npx devscale deploy
+                  <span className="text-indigo-600 dark:text-indigo-400">➜</span>{" "}
+                  <span className="text-zinc-400 dark:text-zinc-300">~</span> npx devscale deploy
                 </p>
                 <p className="text-zinc-500 hidden sm:block">
                   Compilando el proyecto...
@@ -186,7 +186,7 @@ export default function FeaturesBento() {
                 <p className="text-zinc-500 hidden sm:block">
                   Optimizando recursos...
                 </p>
-                <p className="text-green-400">✔ Desplegado en 1.2s</p>
+                <p className="text-green-600 dark:text-green-400">✔ Desplegado en 1.2s</p>
               </div>
             </div>
           </BentoCard>
