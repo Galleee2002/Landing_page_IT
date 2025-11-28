@@ -82,6 +82,8 @@
 }
 
 @layer base {
+  /* scroll-behavior: smooth removido - Lenis maneja el smooth scroll de forma más avanzada */
+  
   * {
     @apply border-border;
   }

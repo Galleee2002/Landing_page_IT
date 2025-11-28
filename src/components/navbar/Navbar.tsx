@@ -6,24 +6,37 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X, Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
+  const { handleScrollLink: baseHandleScrollLink } = useSmoothScroll();
 
-  // Detectar scroll para efectos adicionales (opcional, por si queremos encogerlo luego)
+  // Detectar scroll para efectos visuales del navbar
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50);
   });
 
   const navLinks = [
     { name: "Inicio", href: "#hero" },
-    { name: "Clientes", href: "#social-proof" },
     { name: "Características", href: "#features" },
     { name: "Código", href: "#code" },
     { name: "Contacto", href: "#cta" },
   ];
+
+  // Wrapper que cierra el menú móvil después del scroll
+  const handleScrollLink = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    baseHandleScrollLink(e, href, () => {
+      setIsMobileMenuOpen(false);
+    });
+    // Cerrar inmediatamente para mejor UX
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -35,14 +48,22 @@ export default function Navbar() {
       >
         <nav
           className={cn(
-            "relative flex items-center justify-between w-full max-w-5xl rounded-full border px-6 py-3 transition-all duration-300",
-            // Estilos Glassmorphism duales
-            "bg-white/70 border-zinc-200 shadow-lg shadow-zinc-200/50",
+            "relative flex items-center justify-between w-full max-w-5xl rounded-full border px-6 py-3 transition-all duration-300 ease-in-out",
+            
+            // --- ESTILOS BASE (Glassmorphism) ---
+            "bg-white/70 border-zinc-200 shadow-lg shadow-zinc-200/50", 
             "dark:bg-zinc-900/60 dark:border-white/10 dark:shadow-black/5",
             "backdrop-blur-md",
-            // Efecto al hacer scroll (opcional: más solido)
-            isScrolled &&
-              "bg-white/80 border-zinc-200/80 dark:bg-zinc-900/80 dark:border-white/10"
+
+            // --- NUEVO: HOVER EFFECTS (Sombra y Glow) ---
+            // 1. Light Mode: Sombra más pronunciada, borde más oscuro y glow sutil
+            "hover:bg-white/90 hover:border-zinc-400 hover:shadow-2xl hover:shadow-zinc-300/60 hover:shadow-[0_0_20px_rgba(0,0,0,0.08)]",
+            
+            // 2. Dark Mode: El borde se aclara y aparece un resplandor Índigo (Glow)
+            "dark:hover:border-zinc-700 dark:hover:shadow-[0_0_30px_rgba(99,102,241,0.15)]",
+            
+            // 3. Interacción al hacer scroll: fondo más opaco cuando se hace scroll
+            isScrolled && "bg-white/90 dark:bg-zinc-900/90"
           )}
         >
           {/* 1. Logo Section */}
@@ -61,6 +82,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleScrollLink(e, link.href)}
                 className="text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
               >
                 {link.name}
@@ -102,7 +124,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => handleScrollLink(e, link.href)}
                 className="text-base font-medium text-zinc-700 hover:text-indigo-600 dark:text-zinc-400 dark:hover:text-indigo-400 transition-colors"
               >
                 {link.name}

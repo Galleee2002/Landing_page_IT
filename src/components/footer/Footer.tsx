@@ -17,7 +17,6 @@ const footerLinks = {
     { name: "Acerca de", href: "#" },
     { name: "Blog", href: "#" },
     { name: "Carreras", href: "#" },
-    { name: "Clientes", href: "#" },
     { name: "Marca", href: "#" },
   ],
   legal: [
