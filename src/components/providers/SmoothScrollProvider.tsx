@@ -1,9 +1,29 @@
 'use client';
 
-import { ReactLenis } from 'lenis/react';
+import { ReactLenis, useLenis } from 'lenis/react';
+import { createContext, useContext, type ReactNode } from 'react';
+import type Lenis from 'lenis';
 
 interface SmoothScrollProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
+}
+
+// Contexto para exponer la instancia de Lenis
+const LenisContext = createContext<Lenis | null>(null);
+
+export function useLenisInstance() {
+  return useContext(LenisContext);
+}
+
+// Componente interno que captura la instancia de Lenis
+function LenisInstanceProvider({ children }: { children: ReactNode }) {
+  const lenis = useLenis();
+  
+  return (
+    <LenisContext.Provider value={lenis ?? null}>
+      {children}
+    </LenisContext.Provider>
+  );
 }
 
 export default function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
@@ -17,7 +37,7 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
         wheelMultiplier: 1,
       }}
     >
-      {children}
+      <LenisInstanceProvider>{children}</LenisInstanceProvider>
     </ReactLenis>
   );
 }

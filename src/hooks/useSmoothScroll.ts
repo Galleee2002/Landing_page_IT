@@ -1,7 +1,8 @@
 "use client";
 
-import { useLenis } from "@studio-freight/react-lenis";
+import { useLenisInstance } from "@/components/providers/SmoothScrollProvider";
 import { useCallback } from "react";
+import type Lenis from "lenis";
 
 interface SmoothScrollOptions {
   offset?: number;
@@ -17,7 +18,7 @@ interface SmoothScrollOptions {
  * @returns Función para hacer scroll a un elemento o selector
  */
 export function useSmoothScroll(options?: SmoothScrollOptions) {
-  const lenis = useLenis();
+  const lenis = useLenisInstance();
 
   const scrollTo = useCallback(
     (
@@ -29,10 +30,10 @@ export function useSmoothScroll(options?: SmoothScrollOptions) {
       const finalOptions = { ...options, ...customOptions };
       const element =
         typeof target === "string"
-          ? document.querySelector(target)
+          ? (document.querySelector(target) as HTMLElement | null)
           : target;
 
-      if (element) {
+      if (element && element instanceof HTMLElement) {
         lenis.scrollTo(element, {
           offset: finalOptions.offset ?? -100,
           duration: finalOptions.duration ?? 1.5,
